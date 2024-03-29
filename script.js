@@ -6,14 +6,10 @@ async function uploadImage() {
     return;
   }
 
-  const worker = Tesseract.createWorker();
-  await worker.load();
-  await worker.loadLanguage("eng");
-  await worker.initialize("eng");
+  // Tesseract.jsを初期化し、画像からテキストを抽出する
   const {
     data: { text },
-  } = await worker.recognize(file);
-  await worker.terminate();
+  } = await Tesseract.recognize(file);
 
   document.getElementById("extractedText").textContent = text;
   document.getElementById("results").style.display = "block";
@@ -21,10 +17,11 @@ async function uploadImage() {
   // 翻訳
   const translatedText = await translateText(text);
   document.getElementById("translatedText").textContent = translatedText;
+  document.getElementById("translation").style.display = "block";
 }
 
 async function translateText(text) {
-  const apiKey = "3d7e3da4-defa-46ed-9592-4a909a08c449:fx";
+  const apiKey = "YOUR_DEEPL_API_KEY";
   const response = await fetch(
     `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(
       text
