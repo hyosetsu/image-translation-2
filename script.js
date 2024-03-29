@@ -21,7 +21,7 @@ async function uploadImage() {
 }
 
 async function translateText(text) {
-  const apiKey = "YOUR_DEEPL_API_KEY";
+  const apiKey = "3d7e3da4-defa-46ed-9592-4a909a08c449:fx";
   const response = await fetch(
     `https://api-free.deepl.com/v2/translate?auth_key=${apiKey}&text=${encodeURIComponent(
       text
