@@ -8,15 +8,25 @@
 </head>
 <body>
 <h1>写真の文字抽出と翻訳</h1>
-<input type="file" id="fileInput" accept="image/*">
-<button onclick="uploadImage()">アップロード</button>
-<div id="results" style="display: none;">
-  <h2>抽出されたテキスト:</h2>
-  <p id="extractedText"></p>
-</div>
-<div id="translation" style="display: none;">
-  <h2>翻訳されたテキスト:</h2>
-  <p id="translatedText"></p>
+<div class="container">
+  <div class="column" id="imageColumn">
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">アップロード</button>
+    <div id="imageContainer" style="display: none;">
+      <img id="uploadedImage" src="" alt="アップロードされた画像">
+    </div>
+  </div>
+  <div class="column" id="textColumn">
+    <div id="textContainer" style="display: none;">
+      <h2>抽出されたテキスト:</h2>
+      <textarea id="extractedText" rows="5" cols="50"></textarea>
+      <button onclick="correctText()">訂正</button>
+    </div>
+    <div id="translation" style="display: none;">
+      <h2>翻訳されたテキスト:</h2>
+      <div id="translatedTextContainer"></div>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
